@@ -52,7 +52,7 @@ The program was tested using 1, 2, 5, 10, and 20 processes with the `time` comma
 
 ## Runtime Graph
 
-![Runtime Graph](runtime.png)
+![Runtime Graph](Lab11_Runtime.png)
 
 ## Discussion
 
