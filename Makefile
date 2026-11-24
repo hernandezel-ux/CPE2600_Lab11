@@ -1,21 +1,23 @@
-CC=gcc
-CFLAGS=-c -Wall -g
-LDFLAGS=-ljpeg
-SOURCES= mandel.c jpegrw.c 
-OBJECTS=$(SOURCES:.c=.o)
-EXECUTABLE=mandel
 
-all: $(SOURCES) $(EXECUTABLE) 
+# Name: Emanuel Hernandez
+# Assignment: Lab 11 Multiprocessing
+# Section: 111
 
-# pull in dependency info for *existing* .o files
--include $(OBJECTS:.o=.d)
+CC = gcc
+CFLAGS = -Wall -Wextra
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+all: mandel mandelmovie
 
-.c.o: 
-	$(CC) $(CFLAGS) $< -o $@
-	$(CC) -MM $< > $*.d
+# Compile the original Mandelbrot program
+mandel: mandel.c jpegrw.c jpegrw.h
+	$(CC) $(CFLAGS) -o mandel mandel.c jpegrw.c -ljpeg -lm
 
+# Compile the multiprocessing program
+mandelmovie: mandelmovie.c
+	$(CC) $(CFLAGS) -o mandelmovie mandelmovie.c -lm
+
+# Remove compiled programs and object files
 clean:
-	rm -rf $(OBJECTS) $(EXECUTABLE) *.d
+	rm -f mandel mandelmovie *.o
+
+.PHONY: all clean
