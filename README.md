@@ -25,19 +25,6 @@ Generate 50 images using 5 processes:
 ./mandelmovie -p 5
 ```
 
-Create and play the movie:
-
-```bash
-ffmpeg -y -framerate 10 -i mandel%d.jpg -vf "fps=25" mandel.mpg
-ffplay mandel.mpg
-```
-
-Start the movie at approximately frame 27:
-
-```bash
-ffplay -ss 2.7 mandel.mpg
-```
-
 ## Runtime Results
 
 The program was tested using 1, 2, 5, 10, and 20 processes with the `time` command.
